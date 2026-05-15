@@ -48,3 +48,17 @@ class QueryResponse(BaseModel):
     confidence: ConfidenceLevel
     sources: list[SourceReference]
     requires_human_review: bool = False       
+
+
+class Obligation(BaseModel):
+    requirement: str = Field(min_length=5)
+    category: str = Field(min_length=2)
+    priority: Literal["low", "medium", "high", "critical"]
+
+
+class ObligationExtractionRequest(BaseModel):
+    document_text: str = Field(min_length=20)
+
+
+class ObligationExtractionResponse(BaseModel):
+    obligations: list[Obligation]            

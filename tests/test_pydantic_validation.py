@@ -4,6 +4,9 @@ from pydantic import ValidationError
 from app.domain.models import (
     DocumentChunk,
     DocumentIngestRequest,
+    Obligation,
+    ObligationExtractionRequest,
+    ObligationExtractionResponse,
     QueryRequest,
     QueryResponse,
     SourceReference,
@@ -98,3 +101,32 @@ def test_query_response_accepts_sources():
 
     assert response.confidence == "high"
     assert response.sources[0].document_id == "api-resilience-policy"        
+
+
+def test_valid_obligation_extraction_response_passes_validation():
+    response = ObligationExtractionResponse(
+        obligations=[
+            Obligation(
+                requirement="External APIs must use retries with exponential backoff.",
+                category="resilience",
+                priority="high",
+            )
+        ]
+    )  
+
+    assert len(response.obligations) == 1
+    assert response.obligations[0].priority == "high"
+
+
+def test_invalid_obligation_priority_fails_validation():
+    with pytest.raises(ValidationError):
+        Obligation(
+            requirement="Customer data must not be logged in plaintext.",
+            category="security",
+            priority="urgent",
+        )      
+
+
+def test_short_obligation_extraction_request_fails_validation():
+    with pytest.raises(ValidationError):
+        ObligationExtractionRequest(document_text="too short")        
