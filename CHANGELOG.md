@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.3.0
+
+### Added
+
+- `FailingModelClient` for simulating provider failures
+- `ResilientModelClient` for retry and fallback behavior
+- Retry configuration with `max_retries` and `retry_delay_seconds`
+- Tests for primary model success
+- Tests for fallback model usage when the primary fails
+- Tests for total provider failure
+- Test-only counting client to verify retry count behavior
+
+### Notes
+
+This version demonstrates LLM API resilience without using paid provider calls. The same pattern can wrap real OpenAI, Anthropic, or AWS Bedrock clients in production.
+
 ## v0.2.0
 
 ### Added
