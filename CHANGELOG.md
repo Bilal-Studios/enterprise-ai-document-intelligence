@@ -1,5 +1,19 @@
 # Changelog
 
+
+## v0.5.0
+
+### Added
+
+- GitHub Actions workflow for continuous integration
+- Automated Ruff check on push and pull request
+- Automated pytest run on push and pull request
+
+### Notes
+
+The CI workflow uses Python 3.12 on Ubuntu and runs the same quality checks used locally: `ruff check .` and `pytest`.
+
+
 ## v0.4.0
 
 ### Added
