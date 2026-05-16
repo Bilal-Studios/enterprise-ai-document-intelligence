@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.9.0
+
+### Added
+
+- `.env.example` for documented local configuration
+- `Makefile` with common developer commands
+- README quick demo flow
+- README known limitations section
+
+### Improved
+
+- FastAPI OpenAPI version updated to `0.9.0`
+- Developer experience for running lint, tests, evals, and Docker commands
+
+### Notes
+
+This version focuses on final developer polish before the `v1.0.0` interview-ready release. No major product features were added.
+
+
 ## v0.8.0
 
 ### Added

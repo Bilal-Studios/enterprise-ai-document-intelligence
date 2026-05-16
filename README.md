@@ -39,6 +39,39 @@ This keeps the system:
 
 ---
 
+## Quick Demo Flow
+
+Start the app:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+Open the demo UI:
+```text
+http://127.0.0.1:8000/app
+```
+
+Demo steps:
+
+    1. Click Clear In-Memory Store
+    2. Upload a .txt or .md document
+    3. Choose a category and access level
+    4. Ask a question
+    5. Change user role to test permission-aware retrieval
+    6. Open /docs to inspect the API contract
+
+Run quality checks:
+```bash
+make check
+```
+Run evals only:
+```bash
+make eval
+```
+
+---
+
 ## Architecture
 
 The project uses a layered architecture:
@@ -506,6 +539,25 @@ Possible production upgrades:
 - Add hybrid search and re-ranking
 - Add evaluation datasets for answer quality and retrieval quality
 - Add Kubernetes deployment manifests or cloud deployment configuration
+
+---
+
+## Known Limitations
+
+This project is intentionally small and free to run.
+
+Current limitations:
+
+- The vector store is in-memory and resets when the server restarts.
+- Uploaded documents are not persisted to disk or a database.
+- The retriever uses simple keyword scoring, not embeddings.
+- The HTML UI is a lightweight demo interface, not a production frontend.
+- The LLM client is fake by default, so extraction responses are deterministic.
+- Only `.txt` and `.md` uploads are supported.
+- There is no authentication or tenant isolation yet.
+- Permission checks are role-based examples, not full enterprise authorization.
+
+These limitations are intentional for the interview version. The architecture is designed so each part can be replaced with production adapters later.
 
 ---
 
