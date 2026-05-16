@@ -585,6 +585,18 @@ Human-friendly demo:
 - UI button for clearing uploaded chunks
 - tests for upload and clear behavior
 
+### v0.8.0
+
+Evals and sample documents:
+
+- sample enterprise policy documents
+- golden questions
+- eval runner
+- source document checks
+- permission-aware retrieval checks
+- no-context behavior checks
+- improved keyword retrieval
+
 ---
 
 ## Interview Notes
