@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.4.0
+
+### Added
+
+- `Dockerfile` for containerizing the FastAPI backend
+- `.dockerignore` to keep images clean and avoid copying local caches or virtual environments
+- Docker run instructions in the README
+
+### Verified
+
+- Docker image builds successfully
+- Container runs the FastAPI app with Uvicorn
+- `/health` endpoint works from inside the container
+
+### Notes
+
+The container exposes port `8000` and runs the app with `uvicorn app.main:app --host 0.0.0.0 --port 8000`.
+
 ## v0.3.0
 
 ### Added

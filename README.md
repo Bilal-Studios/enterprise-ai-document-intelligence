@@ -53,6 +53,14 @@ Real LLM APIs are intentionally not required for tests. The project uses fake cl
 
 ## Resilience Patterns
 
+## Run with Docker
+
+Build the image:
+
+```bash
+docker build -t enterprise-ai-document-intelligence .
+```
+
 ## Running Locally
 
 ```bash
