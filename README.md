@@ -381,6 +381,31 @@ ruff check .
 
 ---
 
+## Evals
+
+The project includes a lightweight eval runner for checking retrieval behavior.
+
+Run evals:
+
+```bash
+python evals/run_evals.py
+```
+The eval runner:
+
+- clears the in-memory vector store
+- loads sample documents from `data/sample_docs`
+- runs golden questions from `evals/golden_questions.json`
+- checks expected confidence
+- checks expected source document
+- checks whether human review is required
+
+This is separate from pytest.
+
+`pytest` checks deterministic software behavior.
+`evals` check whether the RAG-style retrieval behavior matches expected scenarios.
+
+---
+
 ## Run Locally
 
 Create and activate a virtual environment:

@@ -10,7 +10,7 @@ app = FastAPI(
     title="Enterprise AI Document Intelligence",
     description="A production-style AI backend demo for document ingestion, "
      "RAG-style retrieval, structured extraction, testing, and resilience",
-    version="0.7.0",
+    version="0.8.0",
 )
 
 app.include_router(health_router)

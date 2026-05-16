@@ -1,0 +1,47 @@
+[
+  {
+    "name": "api_resilience_question",
+    "question": "How should external API failures be handled?",
+    "user_role": "employee",
+    "max_sources": 3,
+    "expected_confidence": "high",
+    "expected_source_document_id": "api-resilience-policy",
+    "expected_requires_human_review": false
+  },
+  {
+    "name": "cloud_security_plaintext_logging",
+    "question": "Can customer data be logged in plaintext?",
+    "user_role": "admin",
+    "max_sources": 3,
+    "expected_confidence": "high",
+    "expected_source_document_id": "cloud-security-policy",
+    "expected_requires_human_review": false
+  },
+  {
+    "name": "restricted_security_hidden_from_employee",
+    "question": "Can production secrets be committed to source control?",
+    "user_role": "employee",
+    "max_sources": 3,
+    "expected_confidence": "low",
+    "expected_source_document_id": null,
+    "expected_requires_human_review": true
+  },
+  {
+    "name": "restricted_security_visible_to_admin",
+    "question": "Can production secrets be committed to source control?",
+    "user_role": "admin",
+    "max_sources": 3,
+    "expected_confidence": "high",
+    "expected_source_document_id": "cloud-security-policy",
+    "expected_requires_human_review": false
+  },
+  {
+    "name": "no_context_question",
+    "question": "What is the company lunch reimbursement policy?",
+    "user_role": "employee",
+    "max_sources": 3,
+    "expected_confidence": "low",
+    "expected_source_document_id": null,
+    "expected_requires_human_review": true
+  }
+]

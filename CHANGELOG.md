@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.8.0
+
+### Added
+
+- Sample enterprise documents for local demos and evals
+- `golden_questions.json` with expected retrieval scenarios
+- `run_evals.py` evaluation runner
+- Eval checks for expected confidence
+- Eval checks for expected source document
+- Eval checks for human-review behavior
+- Eval coverage for permission-aware retrieval
+
+### Improved
+
+- In-memory retriever tokenization
+- Stop-word filtering for keyword scoring
+- Retrieval threshold to reduce weak/noisy matches
+- Title-aware chunk scoring
+
+### Notes
+
+This version separates deterministic software tests from retrieval evals. `pytest` validates code behavior, while `python evals/run_evals.py` checks whether the RAG-style system retrieves expected sources and handles permission/no-context scenarios correctly.
+
 
 ## v0.7.0
 
