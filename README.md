@@ -649,6 +649,18 @@ Evals and sample documents:
 - no-context behavior checks
 - improved keyword retrieval
 
+### v1.0.0
+
+Interview-ready release:
+
+- final stable repo checkpoint
+- all tests passing
+- Ruff clean
+- eval runner passing
+- Docker build verified
+- GitHub Actions CI verified
+- README and changelog complete
+
 ---
 
 ## Interview Notes

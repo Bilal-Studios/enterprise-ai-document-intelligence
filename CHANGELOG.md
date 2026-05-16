@@ -1,5 +1,39 @@
 # Changelog
 
+## v1.0.0
+
+### Added
+
+- Final interview-ready release checkpoint
+- Stable project version for technical review
+- Final verification of tests, linting, evals, Docker build, and CI workflow
+
+### Included
+
+- FastAPI backend
+- Pydantic request and response schemas
+- Document ingestion and chunking
+- In-memory RAG-style retrieval
+- Permission-aware document access
+- Structured obligation extraction
+- Fake LLM clients for deterministic tests
+- Resilient model client with retry and fallback behavior
+- Lightweight HTML demo UI
+- `.txt` and `.md` document upload
+- In-memory store clearing for demos
+- Retrieval evals with golden questions
+- Docker support
+- GitHub Actions CI
+- Ruff and pytest quality checks
+- README documentation and production upgrade path
+
+### Notes
+
+This release marks the project as interview-ready. The system is intentionally free to run and uses fake or in-memory adapters instead of paid LLM APIs, external vector databases, or cloud infrastructure.
+
+The architecture is designed so fake adapters can later be replaced with real providers such as OpenAI, Anthropic, AWS Bedrock, pgvector, Qdrant, Pinecone, Weaviate, or OpenSearch.
+
+
 ## v0.9.0
 
 ### Added

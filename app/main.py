@@ -10,7 +10,7 @@ app = FastAPI(
     title="Enterprise AI Document Intelligence",
     description="A production-style AI backend demo for document ingestion, "
      "RAG-style retrieval, structured extraction, testing, and resilience",
-    version="0.9.0",
+    version="1.0.0",
 )
 
 app.include_router(health_router)
@@ -28,6 +28,4 @@ async def root():
 async def frontend_app() -> FileResponse:
     return FileResponse("app/static/index.html")
 
-# @app.get("/health")
-# async def health():
-#        return {"status":"ok"}
+
