@@ -8,7 +8,11 @@ class InMemoryVectorStore(VectorStore):
         self._chunks: list[DocumentChunk] = []
 
     def add_chunks(self, chunks: list[DocumentChunk]) -> None:
-        self._chunks.extend(chunks)    
+        self._chunks.extend(chunks)   
+
+
+    def clear(self) -> None:
+        self._chunks.clear()     
 
 
     def _score_chunk(self, query: str, chunk: DocumentChunk) -> int:
@@ -44,3 +48,4 @@ class InMemoryVectorStore(VectorStore):
         positive_matches.sort(key=lambda item: item[0], reverse=True)
 
         return [chunk for _, chunk in positive_matches[:max_results]]
+        

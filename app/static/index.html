@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enterprise AI Document Intelligence</title>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      background: #0f172a;
+      color: #e5e7eb;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 20px;
+    }
+
+    section {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    h1,
+    h2 {
+      margin-top: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    button,
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    button {
+      cursor: pointer;
+      background: #2563eb;
+      border: none;
+      font-weight: 700;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: #020617;
+      border: 1px solid #1f2937;
+      padding: 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+    }
+
+    .muted {
+      color: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Enterprise AI Document Intelligence</h1>
+    <p class="muted">
+      Upload a text or markdown document, then ask questions against the in-memory RAG-style retriever.
+    </p>
+
+    <section>
+      <h2>Upload Document</h2>
+
+      <label for="fileInput">Document file</label>
+      <input id="fileInput" type="file" accept=".txt,.md" />
+
+      <label for="categoryInput">Category</label>
+      <input id="categoryInput" value="engineering" />
+
+      <label for="accessLevelInput">Access Level</label>
+      <select id="accessLevelInput">
+        <option value="public">public</option>
+        <option value="internal" selected>internal</option>
+        <option value="restricted">restricted</option>
+      </select>
+
+      <button onclick="uploadDocument()">Upload and Index</button>
+      <button onclick="clearDocuments()">Clear In-Memory Store</button>
+
+      <pre id="uploadResult">No upload yet.</pre>
+    </section>
+
+    <section>
+      <h2>Ask Question</h2>
+
+      <label for="questionInput">Question</label>
+      <textarea id="questionInput" rows="4">How should external API failures be handled?</textarea>
+
+      <label for="userRoleInput">User Role</label>
+      <select id="userRoleInput">
+        <option value="guest">guest</option>
+        <option value="employee" selected>employee</option>
+        <option value="engineer">engineer</option>
+        <option value="admin">admin</option>
+      </select>
+
+      <button onclick="askQuestion()">Ask</button>
+
+      <pre id="queryResult">No question asked yet.</pre>
+    </section>
+  </main>
+
+  <script>
+    async function uploadDocument() {
+      const fileInput = document.getElementById("fileInput");
+      const category = document.getElementById("categoryInput").value;
+      const accessLevel = document.getElementById("accessLevelInput").value;
+      const output = document.getElementById("uploadResult");
+
+      if (!fileInput.files.length) {
+        output.textContent = "Please choose a .txt or .md file first.";
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("file", fileInput.files[0]);
+
+      const url = `/documents/upload?category=${encodeURIComponent(category)}&access_level=${encodeURIComponent(accessLevel)}`;
+
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      output.textContent = JSON.stringify(data, null, 2);
+    }
+
+
+    
+    async function clearDocuments() {
+        const uploadOutput = document.getElementById("uploadResult");
+        const queryOutput = document.getElementById("queryResult");
+
+        const response = await fetch("/documents/clear", {
+        method: "POST",
+        });
+
+        const data = await response.json();
+
+        uploadOutput.textContent = JSON.stringify(data, null, 2);
+        queryOutput.textContent = "No question asked yet.";
+    }
+
+
+    async function askQuestion() {
+      const question = document.getElementById("questionInput").value;
+      const userRole = document.getElementById("userRoleInput").value;
+      const output = document.getElementById("queryResult");
+
+      const response = await fetch("/query", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: question,
+          user_role: userRole,
+          max_sources: 3,
+        }),
+      });
+
+      const data = await response.json();
+      output.textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>

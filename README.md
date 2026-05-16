@@ -104,6 +104,27 @@ pyproject.toml
 
 ---
 
+
+## Demo UI
+
+The project includes a lightweight HTML demo interface:
+
+```text
+http://127.0.0.1:8000/app
+```
+The demo UI allows a user to:
+
+- upload `.txt` or `.md` documents
+- choose document category
+- choose document access level
+- ask questions against the in-memory retriever
+- choose a user role for permission-aware retrieval
+- clear the in-memory document store
+
+This interface is intentionally simple and does not replace the API. It exists to make the backend easier to test manually without using Swagger.
+
+Because the current vector store is in-memory, uploaded documents are cleared when the server restarts or when `/documents/clear` is called.
+
 ## API Endpoints
 
 ### Health Check
@@ -527,6 +548,17 @@ Documentation polish:
 - testing strategy
 - resilience strategy
 - production upgrade path
+
+### v0.7.0
+
+Human-friendly demo:
+
+- HTML demo interface at `/app`
+- `.txt` and `.md` document upload
+- document upload endpoint
+- clear in-memory store endpoint
+- UI button for clearing uploaded chunks
+- tests for upload and clear behavior
 
 ---
 

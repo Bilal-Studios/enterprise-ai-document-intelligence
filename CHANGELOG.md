@@ -1,6 +1,47 @@
 # Changelog
 
 
+## v0.7.0
+
+### Added
+
+- Lightweight HTML demo interface at `/app`
+- Document upload endpoint at `/documents/upload`
+- Support for uploading `.txt` and `.md` documents
+- Clear in-memory document store endpoint at `/documents/clear`
+- Clear store button in the HTML demo interface
+- `DocumentUploadResponse` response model
+- `DocumentClearResponse` response model
+- Tests for document upload and clear behavior
+
+### Notes
+
+This version makes the backend easier to demo without using Swagger directly. The core API remains JSON-first, but `/app` provides a simple human-friendly interface for uploading documents, asking questions, and clearing the in-memory store.
+
+The document store is still in-memory. Restarting the server or calling `/documents/clear` resets uploaded chunks. In production, this would be replaced with persistent storage, document versioning, and upsert/delete behavior.
+
+## v0.6.0
+
+### Added
+
+- Polished README documentation
+- Architecture explanation
+- Project structure overview
+- RAG flow explanation
+- Permission-aware retrieval explanation
+- LLM provider abstraction explanation
+- Resilience strategy documentation
+- Testing strategy documentation
+- Docker usage instructions
+- CI/CD explanation
+- Production upgrade path
+- Version roadmap
+
+### Notes
+
+This version improves the repository’s readability for technical review. It explains the engineering decisions behind the project, including why the app uses fake LLM clients, in-memory retrieval, Pydantic validation, and provider abstractions.
+
+
 ## v0.5.0
 
 ### Added

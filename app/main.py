@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 
 from app.api.routes_documents import router as documents_router
 from app.api.routes_extract import router as extract_router
@@ -9,7 +10,7 @@ app = FastAPI(
     title="Enterprise AI Document Intelligence",
     description="A production-style AI backend demo for document ingestion, "
      "RAG-style retrieval, structured extraction, testing, and resilience",
-    version="0.1.0",
+    version="0.7.0",
 )
 
 app.include_router(health_router)
@@ -22,6 +23,10 @@ app.include_router(extract_router)
 async def root():
     return {"message": "API is running"}
 
+
+@app.get("/app")
+async def frontend_app() -> FileResponse:
+    return FileResponse("app/static/index.html")
 
 # @app.get("/health")
 # async def health():

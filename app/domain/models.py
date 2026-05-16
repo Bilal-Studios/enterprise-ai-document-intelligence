@@ -62,3 +62,15 @@ class ObligationExtractionRequest(BaseModel):
 
 class ObligationExtractionResponse(BaseModel):
     obligations: list[Obligation]            
+
+
+class DocumentUploadResponse(BaseModel):
+    document_id: str
+    filename: str
+    chunks_created: int
+    status: Literal["indexed"]    
+
+
+class DocumentClearResponse(BaseModel):
+    status: Literal["cleared"]
+    chunks_remaining: int    
