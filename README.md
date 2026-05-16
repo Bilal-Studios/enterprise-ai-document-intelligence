@@ -649,6 +649,14 @@ Evals and sample documents:
 - no-context behavior checks
 - improved keyword retrieval
 
+### v0.9.0
+
+Dev Polish for final release
+
+- Clean README.md
+- Clean CHANGELOG.md
+- `Tests.yml`, `Makefile`, `dockerfile`, `.env.example` tested
+
 ### v1.0.0
 
 Interview-ready release:
