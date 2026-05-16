@@ -8,6 +8,7 @@
 - GitHub Actions workflow for continuous integration
 - Automated Ruff check on push and pull request
 - Automated pytest run on push and pull request
+- Node 24 opt-in for GitHub Actions runtime migration
 
 ### Notes
 
